@@ -38,68 +38,68 @@ export default function EarningsCalendar() {
   };
 
   return (
-    <div className="container mx-auto p-8 max-w-7xl">
-      <h1 className="text-3xl font-semibold mb-8 text-gray-900">실적 발표 일정</h1>
+    <div className="container mx-auto px-4 py-12 max-w-6xl bg-[#f5f5f7]">
+      <h1 className="text-4xl font-bold mb-12 text-[#1d1d1f] text-center">실적 발표 일정</h1>
       
-      <div className="flex gap-6 mb-8">
+      <div className="flex flex-col md:flex-row gap-6 mb-12 justify-center items-end">
         <div>
-          <label className="block mb-2 text-sm text-gray-600">시작일:</label>
+          <label className="block mb-2 text-sm font-medium text-[#1d1d1f]">시작일:</label>
           <input 
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            className="bg-white border-0 px-4 py-3 rounded-xl shadow-sm focus:ring-2 focus:ring-[#0066cc] focus:outline-none transition-all"
           />
         </div>
         
         <div>
-          <label className="block mb-2 text-sm text-gray-600">종료일:</label>
+          <label className="block mb-2 text-sm font-medium text-[#1d1d1f]">종료일:</label>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            className="bg-white border-0 px-4 py-3 rounded-xl shadow-sm focus:ring-2 focus:ring-[#0066cc] focus:outline-none transition-all"
           />
         </div>
 
         <button
           onClick={fetchEarnings}
           disabled={isLoading}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+          className="bg-[#0066cc] hover:bg-[#0077ed] text-white px-8 py-3 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium shadow-sm"
         >
           {isLoading ? '로딩중...' : '검색'}
         </button>
       </div>
 
       {earnings.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden backdrop-blur-lg bg-opacity-50">
           <div className="overflow-x-auto">
-            <table className="min-w-full table-auto">
+            <table className="min-w-full divide-y divide-gray-200">
               <thead>
-                <tr className="bg-gray-50">
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">티커</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">회사명</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">발표일시</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">EPS</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">예상 EPS</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">매출액</th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">예상 매출액</th>
+                <tr>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">티커</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">회사명</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">발표일시</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">EPS</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">예상 EPS</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">매출액</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">예상 매출액</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-100">
                 {earnings.map((earning) => (
                   <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 text-sm text-gray-900">{earning.ticker}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{earning.companyName}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.ticker}</td>
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                       {new Date(earning.eventAt).toISOString().split('T')[0]}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">${earning.eps}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">${earning.epsEst}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">${earning.eps}</td>
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">${earning.epsEst}</td>
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                       ${(earning.revenue / 1000000).toFixed(2)}M
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                       ${(earning.revenueEst / 1000000).toFixed(2)}M
                     </td>
                   </tr>
