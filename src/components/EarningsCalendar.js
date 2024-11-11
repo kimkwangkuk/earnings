@@ -38,73 +38,75 @@ export default function EarningsCalendar() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">실적 발표 일정</h1>
+    <div className="container mx-auto p-8 max-w-7xl">
+      <h1 className="text-3xl font-semibold mb-8 text-gray-900">실적 발표 일정</h1>
       
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-6 mb-8">
         <div>
-          <label className="block mb-2">시작일:</label>
-          <input
+          <label className="block mb-2 text-sm text-gray-600">시작일:</label>
+          <input 
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="border p-2 rounded"
+            className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
         
         <div>
-          <label className="block mb-2">종료일:</label>
+          <label className="block mb-2 text-sm text-gray-600">종료일:</label>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="border p-2 rounded"
+            className="border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
 
         <button
           onClick={fetchEarnings}
           disabled={isLoading}
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-6"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-6 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-medium"
         >
           {isLoading ? '로딩중...' : '검색'}
         </button>
       </div>
 
       {earnings.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="min-w-full table-auto">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="px-4 py-2">티커</th>
-                <th className="px-4 py-2">회사명</th>
-                <th className="px-4 py-2">발표일시</th>
-                <th className="px-4 py-2">EPS</th>
-                <th className="px-4 py-2">예상 EPS</th>
-                <th className="px-4 py-2">매출액</th>
-                <th className="px-4 py-2">예상 매출액</th>
-              </tr>
-            </thead>
-            <tbody>
-              {earnings.map((earning) => (
-                <tr key={earning.id} className="border-b">
-                  <td className="px-4 py-2">{earning.ticker}</td>
-                  <td className="px-4 py-2">{earning.companyName}</td>
-                  <td className="px-4 py-2">
-                    {new Date(earning.eventAt).toISOString().split('T')[0]}
-                  </td>
-                  <td className="px-4 py-2">${earning.eps}</td>
-                  <td className="px-4 py-2">${earning.epsEst}</td>
-                  <td className="px-4 py-2">
-                    ${(earning.revenue / 1000000).toFixed(2)}M
-                  </td>
-                  <td className="px-4 py-2">
-                    ${(earning.revenueEst / 1000000).toFixed(2)}M
-                  </td>
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full table-auto">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">티커</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">회사명</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">발표일시</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">EPS</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">예상 EPS</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">매출액</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-600">예상 매출액</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {earnings.map((earning) => (
+                  <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 text-sm text-gray-900">{earning.ticker}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900">{earning.companyName}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900">
+                      {new Date(earning.eventAt).toISOString().split('T')[0]}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-900">${earning.eps}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900">${earning.epsEst}</td>
+                    <td className="px-6 py-4 text-sm text-gray-900">
+                      ${(earning.revenue / 1000000).toFixed(2)}M
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-900">
+                      ${(earning.revenueEst / 1000000).toFixed(2)}M
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
