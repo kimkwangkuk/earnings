@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/earnings:query*",
-      "destination": "https://stocknow.ai/api/earnings:query*"
+      "source": "/api/earnings",
+      "destination": "https://stocknow.ai/api/earnings"
     }
   ]
 }
