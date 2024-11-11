@@ -1,4 +1,3 @@
-import './App.css';
 import EarningsCalendar from './components/EarningsCalendar';
 
 function App() {
