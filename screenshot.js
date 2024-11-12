@@ -38,30 +38,37 @@ async function takeScreenshot() {
     const browser = await puppeteer.launch({
       headless: 'new',
       args: [
-        '--no-sandbox', 
+        '--no-sandbox',
         '--disable-setuid-sandbox',
+        '--font-render-hinting=medium',
         '--lang=ko-KR,ko',
-        '--font-render-hinting=medium'
-      ]
+        '--disable-gpu',
+        '--force-color-profile=srgb',
+        '--enable-font-antialiasing',
+        '--disable-font-subpixel-positioning',
+      ],
+      defaultViewport: {
+        width: 1920,
+        height: 1080,
+        deviceScaleFactor: 2
+      }
     });
 
     const page = await browser.newPage();
     
-    // 한글 폰트 및 언어 설정
-    await page.setExtraHTTPHeaders({
-      'Accept-Language': 'ko-KR,ko;q=0.9'
-    });
-
+    // 페이지 설정
     await page.setViewport({
       width: 1920,
-      height: 1080
+      height: 1080,
+      deviceScaleFactor: 2
     });
 
-    // 페이지 로드 전에 폰트 설정
+    // 언어 및 폰트 설정
     await page.evaluateOnNewDocument(() => {
-      document.documentElement.lang = 'ko';
-      document.documentElement.style.fontFamily = 
-        "'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', sans-serif";
+      document.documentElement.style.cssText = `
+        -webkit-font-smoothing: antialiased;
+        font-family: "Malgun Gothic", "맑은 고딕", sans-serif !important;
+      `;
     });
 
     await page.goto('https://earnings-three.vercel.app/', {
@@ -74,7 +81,11 @@ async function takeScreenshot() {
     const screenshotPath = './screenshots/screenshot.png';
     await page.screenshot({
       path: screenshotPath,
-      fullPage: true
+      fullPage: true,
+      type: 'png',
+      encoding: 'binary',
+      quality: 100,
+      omitBackground: true
     });
 
     await browser.close();
