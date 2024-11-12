@@ -51,30 +51,26 @@ export default function EarningsCalendar() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl bg-[#f5f5f7]">
-      <div className="flex items-center gap-4 mb-12">
-        <h1 className="text-3xl font-bold text-[#1d1d1f]">미국 주식</h1>
-        <h2 className="text-3xl font-bold text-[#1d1d1f]">실적 발표 일정</h2>
-      </div>
-      
-      <div className="flex items-center gap-4 mb-8">
-        <div className="flex items-center">
-          <div className="bg-white rounded-t-xl px-4 py-2">
-            <span className="text-sm text-gray-600">월요일</span>
-          </div>
-          <div className="bg-white px-4 py-2">
-            <span className="text-2xl font-bold">11.07</span>
-          </div>
+      <div className="flex justify-between items-start mb-12">
+        <div>
+          <h1 className="text-3xl font-bold text-[#1d1d1f] mb-2">미국 주식</h1>
+          <h2 className="text-3xl font-bold text-[#1d1d1f]">실적 발표 일정</h2>
         </div>
-        
-        <span className="text-2xl">...</span>
-        
-        <div className="flex items-center">
-          <div className="bg-white rounded-t-xl px-4 py-2">
-            <span className="text-sm text-gray-600">금요일</span>
-          </div>
-          <div className="bg-white px-4 py-2">
-            <span className="text-2xl font-bold">11.13</span>
-          </div>
+
+        <div className="flex items-center gap-4">
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            className="px-4 py-2 border rounded-lg"
+          />
+          <span>~</span>
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            className="px-4 py-2 border rounded-lg"
+          />
         </div>
       </div>
 
