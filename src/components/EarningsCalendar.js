@@ -51,36 +51,31 @@ export default function EarningsCalendar() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl bg-[#f5f5f7]">
-      <h1 className="text-4xl font-bold mb-12 text-[#1d1d1f] text-center">실적 발표 일정</h1>
+      <div className="flex items-center gap-4 mb-12">
+        <h1 className="text-3xl font-bold text-[#1d1d1f]">미국 주식</h1>
+        <h2 className="text-3xl font-bold text-[#1d1d1f]">실적 발표 일정</h2>
+      </div>
       
-      <div className="flex flex-col md:flex-row gap-6 mb-12 justify-center items-end">
-        <div>
-          <label className="block mb-2 text-sm font-medium text-[#1d1d1f]">시작일:</label>
-          <input 
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="bg-white border-0 px-4 py-3 rounded-xl shadow-sm focus:ring-2 focus:ring-[#0066cc] focus:outline-none transition-all"
-          />
+      <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center">
+          <div className="bg-white rounded-t-xl px-4 py-2">
+            <span className="text-sm text-gray-600">월요일</span>
+          </div>
+          <div className="bg-white px-4 py-2">
+            <span className="text-2xl font-bold">11.07</span>
+          </div>
         </div>
         
-        <div>
-          <label className="block mb-2 text-sm font-medium text-[#1d1d1f]">종료일:</label>
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="bg-white border-0 px-4 py-3 rounded-xl shadow-sm focus:ring-2 focus:ring-[#0066cc] focus:outline-none transition-all"
-          />
+        <span className="text-2xl">...</span>
+        
+        <div className="flex items-center">
+          <div className="bg-white rounded-t-xl px-4 py-2">
+            <span className="text-sm text-gray-600">금요일</span>
+          </div>
+          <div className="bg-white px-4 py-2">
+            <span className="text-2xl font-bold">11.13</span>
+          </div>
         </div>
-
-        <button
-          onClick={fetchEarnings}
-          disabled={isLoading}
-          className="bg-[#0066cc] hover:bg-[#0077ed] text-white px-8 py-3 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium shadow-sm"
-        >
-          {isLoading ? '로딩중...' : '검색'}
-        </button>
       </div>
 
       {earnings.length > 0 && (
