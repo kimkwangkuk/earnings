@@ -1,10 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function EarningsCalendar() {
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const formatDate = (date) => {
+    return date.toISOString().split('T')[0];
+  };
+
+  const [startDate, setStartDate] = useState(formatDate(today));
+  const [endDate, setEndDate] = useState(formatDate(tomorrow));
   const [earnings, setEarnings] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    fetchEarnings();
+  }, []);
 
   const fetchEarnings = async () => {
     if (!startDate || !endDate) {
