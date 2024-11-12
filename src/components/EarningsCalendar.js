@@ -71,6 +71,13 @@ export default function EarningsCalendar() {
             onChange={(e) => setEndDate(e.target.value)}
             className="px-4 py-2 border rounded-lg"
           />
+          <button
+            onClick={fetchEarnings}
+            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+            disabled={isLoading}
+          >
+            {isLoading ? '로딩중...' : '조회하기'}
+          </button>
         </div>
       </div>
 
