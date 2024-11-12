@@ -103,7 +103,14 @@ export default function EarningsCalendar() {
                     </td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">
-                      {new Date(earning.eventAt).toISOString().split('T')[0]}
+                      {new Date(earning.eventAt).toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                      })}
                     </td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">${earning.eps}</td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">${earning.epsEst}</td>
