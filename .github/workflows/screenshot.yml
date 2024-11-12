@@ -1,0 +1,42 @@
+name: Take Screenshot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 15 * * *'  # 한국 시간 자정 (UTC+9)
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Install Puppeteer and Nodemailer
+        run: npm install puppeteer nodemailer
+        
+      - name: Take screenshot and send email
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: node screenshot.js
+        
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Update screenshots" || exit 0
+          git push
