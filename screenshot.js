@@ -84,7 +84,6 @@ async function takeScreenshot() {
       fullPage: true,
       type: 'png',
       encoding: 'binary',
-      quality: 100,
       omitBackground: true
     });
 
