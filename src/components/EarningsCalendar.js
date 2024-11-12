@@ -89,7 +89,18 @@ export default function EarningsCalendar() {
               <tbody className="divide-y divide-gray-100">
                 {earnings.map((earning) => (
                   <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.ticker}</td>
+                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                      <div className="flex items-center gap-2">
+                        {earning.tickerIconUrl && (
+                          <img 
+                            src={earning.tickerIconUrl} 
+                            alt={`${earning.ticker} logo`}
+                            className="w-6 h-6 rounded-full object-contain"
+                          />
+                        )}
+                        {earning.ticker}
+                      </div>
+                    </td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                       {new Date(earning.eventAt).toISOString().split('T')[0]}
