@@ -69,7 +69,7 @@ async function takeScreenshot() {
     });
 
     // 폰트 로딩을 위한 잠시 대기
-    await page.waitForTimeout(1000);
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     const screenshotPath = './screenshots/screenshot.png';
     await page.screenshot({
