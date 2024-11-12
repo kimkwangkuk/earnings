@@ -5,7 +5,9 @@ const fs = require('fs');
 async function sendEmail(screenshotPath) {
   // 이메일 전송 설정
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,  // true for 465, false for other ports
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_APP_PASSWORD
@@ -24,9 +26,13 @@ async function sendEmail(screenshotPath) {
     }]
   };
 
-  // 이메일 전송
-  await transporter.sendMail(mailOptions);
-  console.log('Email sent successfully');
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+    throw error;
+  }
 }
 
 async function takeScreenshot() {
