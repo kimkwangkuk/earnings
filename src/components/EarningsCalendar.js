@@ -80,10 +80,6 @@ export default function EarningsCalendar() {
                   <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">티커</th>
                   <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">회사명</th>
                   <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">발표일시</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">EPS</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">예상 EPS</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">매출액</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">예상 매출액</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -111,14 +107,6 @@ export default function EarningsCalendar() {
                         minute: '2-digit',
                         hour12: true
                       })}
-                    </td>
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">${earning.eps}</td>
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">${earning.epsEst}</td>
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
-                      ${(earning.revenue / 1000000).toFixed(2)}M
-                    </td>
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
-                      ${(earning.revenueEst / 1000000).toFixed(2)}M
                     </td>
                   </tr>
                 ))}
