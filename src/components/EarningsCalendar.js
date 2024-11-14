@@ -65,19 +65,7 @@ export default function EarningsCalendar() {
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
-            style={{
-              colorScheme: 'normal',
-              '&::-webkit-calendar-picker-indicator': {
-                display: 'none'
-              },
-              '&::-webkit-datetime-edit-year-field': {
-                display: 'none'
-              },
-              '&::-webkit-datetime-edit-text': {
-                padding: '0 2px'
-              }
-            }}
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] [&::-webkit-datetime-edit-year-field]:hidden [&::-webkit-calendar-picker-indicator]:hidden"
           />
           <span className="text-gray-500">~</span>
           <input
@@ -85,19 +73,7 @@ export default function EarningsCalendar() {
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
-            style={{
-              colorScheme: 'normal',
-              '&::-webkit-calendar-picker-indicator': {
-                display: 'none'
-              },
-              '&::-webkit-datetime-edit-year-field': {
-                display: 'none'
-              },
-              '&::-webkit-datetime-edit-text': {
-                padding: '0 2px'
-              }
-            }}
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] [&::-webkit-datetime-edit-year-field]:hidden [&::-webkit-calendar-picker-indicator]:hidden"
           />
           <button
             onClick={fetchEarnings}
