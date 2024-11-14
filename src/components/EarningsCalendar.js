@@ -122,13 +122,12 @@ export default function EarningsCalendar() {
                       <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                         {koreanWeekdays[date.getDay()]}
                       </td>
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
                         {date.toLocaleDateString('ko-KR', {
                           timeZone: 'Asia/Seoul',
-                          year: 'numeric',
                           month: '2-digit',
                           day: '2-digit'
-                        })}
+                        }).replace(/\. /g, '.')}
                       </td>
                       <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                         {date.toLocaleTimeString('ko-KR', {
