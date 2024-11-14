@@ -66,13 +66,8 @@ export default function EarningsCalendar() {
             onChange={(e) => setStartDate(e.target.value)}
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
-              colorScheme: 'normal',
-              '::-webkit-calendar-picker-indicator': {
-                display: 'none'
-              }
+              colorScheme: 'normal'
             }}
-            readOnly
-            onClick={(e) => e.target.showPicker()}
           />
           <span className="text-gray-500">~</span>
           <input
@@ -81,13 +76,8 @@ export default function EarningsCalendar() {
             onChange={(e) => setEndDate(e.target.value)}
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
-              colorScheme: 'normal',
-              '::-webkit-calendar-picker-indicator': {
-                display: 'none'
-              }
+              colorScheme: 'normal'
             }}
-            readOnly
-            onClick={(e) => e.target.showPicker()}
           />
           <button
             onClick={fetchEarnings}
@@ -105,11 +95,10 @@ export default function EarningsCalendar() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead>
                 <tr>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">요일</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">날짜</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">시간</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white w-20">요일</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white w-32">날짜</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white w-32">시간</th>
                   <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">종목</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">회사명</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -119,23 +108,19 @@ export default function EarningsCalendar() {
                   
                   return (
                     <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
                         {koreanWeekdays[date.getDay()]}
                       </td>
                       <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
-                        {date.toLocaleDateString('ko-KR', {
-                          timeZone: 'Asia/Seoul',
-                          month: '2-digit',
-                          day: '2-digit'
-                        }).replace(/\. /g, '.')}
+                        {`${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`}
                       </td>
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
                         {date.toLocaleTimeString('ko-KR', {
                           timeZone: 'Asia/Seoul',
                           hour: '2-digit',
                           minute: '2-digit',
                           hour12: true
-                        })}
+                        }).replace(/\s/g, '')}
                       </td>
                       <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                         <div className="flex items-center gap-2">
@@ -149,7 +134,6 @@ export default function EarningsCalendar() {
                           {earning.ticker}
                         </div>
                       </td>
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
                     </tr>
                   );
                 })}
