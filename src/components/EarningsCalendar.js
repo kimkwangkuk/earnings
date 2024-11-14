@@ -67,7 +67,16 @@ export default function EarningsCalendar() {
             onClick={(e) => e.target.showPicker()}
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
-              colorScheme: 'normal'
+              colorScheme: 'normal',
+              '::-webkit-calendar-picker-indicator': {
+                display: 'none'
+              },
+              '::-webkit-datetime-edit-year-field': {
+                display: 'none'
+              },
+              '::-webkit-datetime-edit-text': {
+                padding: '0 2px'
+              }
             }}
           />
           <span className="text-gray-500">~</span>
@@ -78,7 +87,16 @@ export default function EarningsCalendar() {
             onClick={(e) => e.target.showPicker()}
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
-              colorScheme: 'normal'
+              colorScheme: 'normal',
+              '::-webkit-calendar-picker-indicator': {
+                display: 'none'
+              },
+              '::-webkit-datetime-edit-year-field': {
+                display: 'none'
+              },
+              '::-webkit-datetime-edit-text': {
+                padding: '0 2px'
+              }
             }}
           />
           <button
