@@ -64,6 +64,7 @@ export default function EarningsCalendar() {
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
+            onClick={(e) => e.target.showPicker()}
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
               colorScheme: 'normal'
@@ -74,6 +75,7 @@ export default function EarningsCalendar() {
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
+            onClick={(e) => e.target.showPicker()}
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
               colorScheme: 'normal'
