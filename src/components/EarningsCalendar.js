@@ -89,40 +89,55 @@ export default function EarningsCalendar() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead>
                 <tr>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">티커</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">요일</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">날짜</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">시간</th>
+                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">종목</th>
                   <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">회사명</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">발표일시</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {earnings.map((earning) => (
-                  <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
-                      <div className="flex items-center gap-2">
-                        {earning.tickerIconUrl && (
-                          <img 
-                            src={earning.tickerIconUrl} 
-                            alt={`${earning.ticker} logo`}
-                            className="w-6 h-6 rounded-full object-contain"
-                          />
-                        )}
-                        {earning.ticker}
-                      </div>
-                    </td>
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
-                    <td className="px-8 py-5 text-sm text-[#1d1d1f]">
-                      {new Date(earning.eventAt).toLocaleString('ko-KR', {
-                        timeZone: 'Asia/Seoul',
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true
-                      })}
-                    </td>
-                  </tr>
-                ))}
+                {earnings.map((earning) => {
+                  const date = new Date(earning.eventAt);
+                  const koreanWeekdays = ['일', '월', '화', '수', '목', '금', '토'];
+                  
+                  return (
+                    <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                        {koreanWeekdays[date.getDay()]}
+                      </td>
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                        {date.toLocaleDateString('ko-KR', {
+                          timeZone: 'Asia/Seoul',
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit'
+                        })}
+                      </td>
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                        {date.toLocaleTimeString('ko-KR', {
+                          timeZone: 'Asia/Seoul',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          hour12: true
+                        })}
+                      </td>
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
+                        <div className="flex items-center gap-2">
+                          {earning.tickerIconUrl && (
+                            <img 
+                              src={earning.tickerIconUrl} 
+                              alt={`${earning.ticker} logo`}
+                              className="w-6 h-6 rounded-full object-contain"
+                            />
+                          )}
+                          {earning.ticker}
+                        </div>
+                      </td>
+                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
