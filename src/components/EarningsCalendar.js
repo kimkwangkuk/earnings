@@ -68,13 +68,13 @@ export default function EarningsCalendar() {
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
               colorScheme: 'normal',
-              '::-webkit-calendar-picker-indicator': {
+              '&::-webkit-calendar-picker-indicator': {
                 display: 'none'
               },
-              '::-webkit-datetime-edit-year-field': {
+              '&::-webkit-datetime-edit-year-field': {
                 display: 'none'
               },
-              '::-webkit-datetime-edit-text': {
+              '&::-webkit-datetime-edit-text': {
                 padding: '0 2px'
               }
             }}
@@ -88,13 +88,13 @@ export default function EarningsCalendar() {
             className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
             style={{
               colorScheme: 'normal',
-              '::-webkit-calendar-picker-indicator': {
+              '&::-webkit-calendar-picker-indicator': {
                 display: 'none'
               },
-              '::-webkit-datetime-edit-year-field': {
+              '&::-webkit-datetime-edit-year-field': {
                 display: 'none'
               },
-              '::-webkit-datetime-edit-text': {
+              '&::-webkit-datetime-edit-text': {
                 padding: '0 2px'
               }
             }}
