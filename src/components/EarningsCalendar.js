@@ -6,7 +6,9 @@ export default function EarningsCalendar() {
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   const formatDate = (date) => {
-    return date.toISOString().split('T')[0];
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+      .toISOString()
+      .split('T')[0];
   };
 
   const [startDate, setStartDate] = useState(formatDate(today));
@@ -110,6 +112,7 @@ export default function EarningsCalendar() {
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">{earning.companyName}</td>
                     <td className="px-8 py-5 text-sm text-[#1d1d1f]">
                       {new Date(earning.eventAt).toLocaleString('ko-KR', {
+                        timeZone: 'Asia/Seoul',
                         year: 'numeric',
                         month: '2-digit',
                         day: '2-digit',
