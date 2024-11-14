@@ -55,8 +55,8 @@ export default function EarningsCalendar() {
     <div className="container mx-auto px-4 py-12 max-w-6xl bg-[#f5f5f7]">
       <div className="flex justify-between items-start mb-12">
         <div>
-          <h1 className="text-3xl font-bold text-[#1d1d1f] mb-2">미국 주식</h1>
-          <h2 className="text-3xl font-bold text-[#1d1d1f]">실적 발표 일정</h2>
+          <h1 className="text-4xl font-extrabold text-[#1d1d1f] mb-2">미국 주식</h1>
+          <h2 className="text-4xl font-extrabold text-[#1d1d1f]">실적 발표 일정</h2>
         </div>
 
         <div className="flex items-center gap-4">
@@ -64,14 +64,30 @@ export default function EarningsCalendar() {
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="px-4 py-2 border rounded-lg"
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
+            style={{
+              colorScheme: 'normal',
+              '::-webkit-calendar-picker-indicator': {
+                display: 'none'
+              }
+            }}
+            readOnly
+            onClick={(e) => e.target.showPicker()}
           />
-          <span>~</span>
+          <span className="text-gray-500">~</span>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="px-4 py-2 border rounded-lg"
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px]"
+            style={{
+              colorScheme: 'normal',
+              '::-webkit-calendar-picker-indicator': {
+                display: 'none'
+              }
+            }}
+            readOnly
+            onClick={(e) => e.target.showPicker()}
           />
           <button
             onClick={fetchEarnings}
