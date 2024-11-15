@@ -64,7 +64,7 @@ export default function EarningsCalendar() {
           <h2 className="text-4xl font-extrabold text-[#1d1d1f]">실적 발표 일정</h2>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 relative">
           <input
             type="date"
             value={startDate}
@@ -76,15 +76,13 @@ export default function EarningsCalendar() {
               [&::-webkit-datetime-edit-day-field]:hidden 
               [&::-webkit-datetime-edit-year-field]:hidden 
               [&::-webkit-calendar-picker-indicator]:hidden"
-            style={{ position: 'relative' }}
           />
-          <div className="absolute pointer-events-none" style={{ 
-            transform: 'translateX(16px)',
-            marginTop: '10px'
-          }}>
+          <div className="absolute left-4 pointer-events-none" style={{ marginTop: '2px' }}>
             {formatDisplayDate(startDate)}
           </div>
+          
           <span className="text-gray-500">~</span>
+          
           <input
             type="date"
             value={endDate}
@@ -96,14 +94,11 @@ export default function EarningsCalendar() {
               [&::-webkit-datetime-edit-day-field]:hidden 
               [&::-webkit-datetime-edit-year-field]:hidden 
               [&::-webkit-calendar-picker-indicator]:hidden"
-            style={{ position: 'relative' }}
           />
-          <div className="absolute pointer-events-none" style={{ 
-            transform: 'translateX(16px)',
-            marginTop: '10px'
-          }}>
+          <div className="absolute right-[140px] pointer-events-none" style={{ marginTop: '2px' }}>
             {formatDisplayDate(endDate)}
           </div>
+          
           <button
             onClick={fetchEarnings}
             className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
