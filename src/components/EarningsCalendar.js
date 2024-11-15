@@ -45,7 +45,16 @@ export default function EarningsCalendar() {
       }
       
       const data = await response.json();
-      setEarnings(data);
+      
+      // 시가총액 기준 상위 10개 기업 선택
+      const top10ByMarketCap = data.slice(0, 10);
+      
+      // 선택된 10개 기업을 시간순으로 정렬
+      const sortedByTime = top10ByMarketCap.sort((a, b) => {
+        return new Date(a.eventAt) - new Date(b.eventAt);
+      });
+      
+      setEarnings(sortedByTime);
     } catch (error) {
       console.error('Error fetching earnings:', error);
       alert('데이터를 불러오는데 실패했습니다. 콘솔을 확인해주세요.');
