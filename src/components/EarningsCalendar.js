@@ -11,6 +11,11 @@ export default function EarningsCalendar() {
       .split('T')[0];
   };
 
+  const formatDisplayDate = (dateString) => {
+    const date = new Date(dateString);
+    return `${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+  };
+
   const [startDate, setStartDate] = useState(formatDate(today));
   const [endDate, setEndDate] = useState(formatDate(tomorrow));
   const [earnings, setEarnings] = useState([]);
@@ -65,16 +70,40 @@ export default function EarningsCalendar() {
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] [&::-webkit-datetime-edit-year-field]:hidden [&::-webkit-calendar-picker-indicator]:hidden"
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] 
+              [&::-webkit-datetime-edit-text]:hidden 
+              [&::-webkit-datetime-edit-month-field]:hidden 
+              [&::-webkit-datetime-edit-day-field]:hidden 
+              [&::-webkit-datetime-edit-year-field]:hidden 
+              [&::-webkit-calendar-picker-indicator]:hidden"
+            style={{ position: 'relative' }}
           />
+          <div className="absolute pointer-events-none" style={{ 
+            transform: 'translateX(16px)',
+            marginTop: '10px'
+          }}>
+            {formatDisplayDate(startDate)}
+          </div>
           <span className="text-gray-500">~</span>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] [&::-webkit-datetime-edit-year-field]:hidden [&::-webkit-calendar-picker-indicator]:hidden"
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] 
+              [&::-webkit-datetime-edit-text]:hidden 
+              [&::-webkit-datetime-edit-month-field]:hidden 
+              [&::-webkit-datetime-edit-day-field]:hidden 
+              [&::-webkit-datetime-edit-year-field]:hidden 
+              [&::-webkit-calendar-picker-indicator]:hidden"
+            style={{ position: 'relative' }}
           />
+          <div className="absolute pointer-events-none" style={{ 
+            transform: 'translateX(16px)',
+            marginTop: '10px'
+          }}>
+            {formatDisplayDate(endDate)}
+          </div>
           <button
             onClick={fetchEarnings}
             className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
