@@ -53,7 +53,11 @@ export default function EarningsCalendar() {
       console.log('시가총액 상위 10개:', top10ByMarketCap);
       
       const sortedByTime = [...top10ByMarketCap].sort((a, b) => {
-        return new Date(a.eventAt).getTime() - new Date(b.eventAt).getTime();
+        const dateA = new Date(a.eventAt);
+        const dateB = new Date(b.eventAt);
+        const koreaTimeA = new Date(dateA.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+        const koreaTimeB = new Date(dateB.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+        return koreaTimeA.getTime() - koreaTimeB.getTime();
       });
       console.log('시간순 정렬:', sortedByTime);
       
