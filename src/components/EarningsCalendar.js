@@ -86,7 +86,7 @@ export default function EarningsCalendar() {
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] text-center font-bold text-2xl
+            className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] text-center font-bold text-2xl h-16 flex items-center justify-center
               [&::-webkit-datetime-edit-text]:hidden 
               [&::-webkit-datetime-edit-month-field]:hidden 
               [&::-webkit-datetime-edit-day-field]:hidden 
@@ -104,7 +104,7 @@ export default function EarningsCalendar() {
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] text-center font-bold text-2xl
+            className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] text-center font-bold text-2xl h-16 flex items-center justify-center
               [&::-webkit-datetime-edit-text]:hidden 
               [&::-webkit-datetime-edit-month-field]:hidden 
               [&::-webkit-datetime-edit-day-field]:hidden 
