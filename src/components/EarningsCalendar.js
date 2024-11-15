@@ -33,8 +33,13 @@ export default function EarningsCalendar() {
 
     setIsLoading(true);
     try {
-      const start = new Date(startDate).getTime();
-      const end = new Date(endDate).getTime();
+      const startKST = new Date(startDate);
+      startKST.setHours(0, 0, 0, 0);
+      const endKST = new Date(endDate);
+      endKST.setHours(23, 59, 59, 999);
+
+      const start = startKST.getTime() - (9 * 60 * 60 * 1000);
+      const end = endKST.getTime() - (9 * 60 * 60 * 1000);
       
       const response = await fetch(
         `/api/earnings?from=${start}&to=${end}&pageSize=1000&sortBy=marketCap`
@@ -55,9 +60,7 @@ export default function EarningsCalendar() {
       const sortedByTime = [...top10ByMarketCap].sort((a, b) => {
         const dateA = new Date(a.eventAt);
         const dateB = new Date(b.eventAt);
-        const koreaTimeA = new Date(dateA.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-        const koreaTimeB = new Date(dateB.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-        return koreaTimeA.getTime() - koreaTimeB.getTime();
+        return dateA.getTime() - dateB.getTime();
       });
       console.log('시간순 정렬:', sortedByTime);
       
