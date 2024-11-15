@@ -37,7 +37,7 @@ export default function EarningsCalendar() {
       const end = new Date(endDate).getTime();
       
       const response = await fetch(
-        `/api/earnings?from=${start}&to=${end}&pageSize=100&sortBy=marketCap`
+        `/api/earnings?from=${start}&to=${end}&pageSize=1000&sortBy=marketCap`
       );
       
       if (!response.ok) {
@@ -45,22 +45,22 @@ export default function EarningsCalendar() {
       }
       
       const data = await response.json();
-      console.log('원본 데이터:', data); // 디버깅용
+      console.log('원본 데이터:', data);
       
-      // 시가총액 순서 유지한 채로 상위 10개만 선택
-      const top10ByMarketCap = data.slice(0, 10);
-      console.log('상위 10개:', top10ByMarketCap); // 디버깅용
+      const sortedByMarketCap = data.sort((a, b) => b.marketCap - a.marketCap);
       
-      // 선택된 10개 기업을 시간순으로 정렬
+      const top10ByMarketCap = sortedByMarketCap.slice(0, 10);
+      console.log('시가총액 상위 10개:', top10ByMarketCap);
+      
       const sortedByTime = [...top10ByMarketCap].sort((a, b) => {
         return new Date(a.eventAt).getTime() - new Date(b.eventAt).getTime();
       });
-      console.log('시간순 정렬:', sortedByTime); // 디버깅용
+      console.log('시간순 정렬:', sortedByTime);
       
       setEarnings(sortedByTime);
     } catch (error) {
       console.error('Error fetching earnings:', error);
-      alert('데이터를 불러오는데 실패했습니다. 콘솔을 확인해주세요.');
+      alert('데이터를 불러오는데 실패했습니다.');
     }
     setIsLoading(false);
   };
