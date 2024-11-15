@@ -45,11 +45,7 @@ export default function EarningsCalendar() {
       }
       
       const data = await response.json();
-      const sortedData = data
-        .sort((a, b) => b.marketCap - a.marketCap)
-        .slice(0, 10);
-      
-      setEarnings(sortedData);
+      setEarnings(data);
     } catch (error) {
       console.error('Error fetching earnings:', error);
       alert('데이터를 불러오는데 실패했습니다. 콘솔을 확인해주세요.');
