@@ -45,14 +45,17 @@ export default function EarningsCalendar() {
       }
       
       const data = await response.json();
+      console.log('원본 데이터:', data); // 디버깅용
       
-      // 시가총액 기준 상위 10개 기업 선택
+      // 시가총액 순서 유지한 채로 상위 10개만 선택
       const top10ByMarketCap = data.slice(0, 10);
+      console.log('상위 10개:', top10ByMarketCap); // 디버깅용
       
       // 선택된 10개 기업을 시간순으로 정렬
-      const sortedByTime = top10ByMarketCap.sort((a, b) => {
-        return new Date(a.eventAt) - new Date(b.eventAt);
+      const sortedByTime = [...top10ByMarketCap].sort((a, b) => {
+        return new Date(a.eventAt).getTime() - new Date(b.eventAt).getTime();
       });
+      console.log('시간순 정렬:', sortedByTime); // 디버깅용
       
       setEarnings(sortedByTime);
     } catch (error) {
