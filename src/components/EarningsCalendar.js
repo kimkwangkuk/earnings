@@ -36,10 +36,8 @@ export default function EarningsCalendar() {
       const start = new Date(startDate).getTime();
       const end = new Date(endDate).getTime();
       
-      console.log('Fetching:', `/api/earnings?from=${start}&to=${end}&pageSize=5000`);
-      
       const response = await fetch(
-        `/api/earnings?from=${start}&to=${end}&pageSize=5000`
+        `/api/earnings?from=${start}&to=${end}&pageSize=10&sortBy=marketCap`
       );
       
       if (!response.ok) {
@@ -47,8 +45,11 @@ export default function EarningsCalendar() {
       }
       
       const data = await response.json();
-      console.log('Response data:', data);
-      setEarnings(data);
+      const sortedData = data
+        .sort((a, b) => b.marketCap - a.marketCap)
+        .slice(0, 10);
+      
+      setEarnings(sortedData);
     } catch (error) {
       console.error('Error fetching earnings:', error);
       alert('데이터를 불러오는데 실패했습니다. 콘솔을 확인해주세요.');
