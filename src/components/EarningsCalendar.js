@@ -37,7 +37,7 @@ export default function EarningsCalendar() {
       const end = new Date(endDate).getTime();
       
       const response = await fetch(
-        `/api/earnings?from=${start}&to=${end}&pageSize=10&sortBy=marketCap`
+        `/api/earnings?from=${start}&to=${end}&pageSize=100&sortBy=marketCap`
       );
       
       if (!response.ok) {
