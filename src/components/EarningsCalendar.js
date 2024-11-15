@@ -81,34 +81,40 @@ export default function EarningsCalendar() {
         </div>
 
         <div className="flex items-center gap-4 relative">
-          <div className="relative">
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              onClick={(e) => e.target.showPicker()}
-              className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] h-16 
-                text-2xl font-bold"
-            />
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              {formatDisplayDate(startDate)}
-            </div>
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            onClick={(e) => e.target.showPicker()}
+            className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] h-16 
+              text-center font-bold text-2xl
+              [&::-webkit-datetime-edit-text]:hidden 
+              [&::-webkit-datetime-edit-month-field]:hidden 
+              [&::-webkit-datetime-edit-day-field]:hidden 
+              [&::-webkit-datetime-edit-year-field]:hidden 
+              [&::-webkit-calendar-picker-indicator]:hidden"
+          />
+          <div className="absolute left-4 pointer-events-none text-2xl font-bold" style={{ marginTop: '2px' }}>
+            {formatDisplayDate(startDate)}
           </div>
           
           <span className="text-gray-500 text-2xl font-bold">~</span>
           
-          <div className="relative">
-            <input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              onClick={(e) => e.target.showPicker()}
-              className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] h-16 
-                text-2xl font-bold"
-            />
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              {formatDisplayDate(endDate)}
-            </div>
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            onClick={(e) => e.target.showPicker()}
+            className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] h-16 
+              text-center font-bold text-2xl
+              [&::-webkit-datetime-edit-text]:hidden 
+              [&::-webkit-datetime-edit-month-field]:hidden 
+              [&::-webkit-datetime-edit-day-field]:hidden 
+              [&::-webkit-datetime-edit-year-field]:hidden 
+              [&::-webkit-calendar-picker-indicator]:hidden"
+          />
+          <div className="absolute right-[140px] pointer-events-none text-2xl font-bold" style={{ marginTop: '2px' }}>
+            {formatDisplayDate(endDate)}
           </div>
           
           <button
