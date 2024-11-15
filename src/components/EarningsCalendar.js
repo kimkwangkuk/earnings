@@ -86,32 +86,32 @@ export default function EarningsCalendar() {
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] 
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] text-center font-bold text-2xl
               [&::-webkit-datetime-edit-text]:hidden 
               [&::-webkit-datetime-edit-month-field]:hidden 
               [&::-webkit-datetime-edit-day-field]:hidden 
               [&::-webkit-datetime-edit-year-field]:hidden 
               [&::-webkit-calendar-picker-indicator]:hidden"
           />
-          <div className="absolute left-4 pointer-events-none" style={{ marginTop: '2px' }}>
+          <div className="absolute left-4 pointer-events-none text-2xl font-bold" style={{ marginTop: '2px' }}>
             {formatDisplayDate(startDate)}
           </div>
           
-          <span className="text-gray-500">~</span>
+          <span className="text-gray-500 text-2xl font-bold">~</span>
           
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] 
+            className="px-4 py-2 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] text-center font-bold text-2xl
               [&::-webkit-datetime-edit-text]:hidden 
               [&::-webkit-datetime-edit-month-field]:hidden 
               [&::-webkit-datetime-edit-day-field]:hidden 
               [&::-webkit-datetime-edit-year-field]:hidden 
               [&::-webkit-calendar-picker-indicator]:hidden"
           />
-          <div className="absolute right-[140px] pointer-events-none" style={{ marginTop: '2px' }}>
+          <div className="absolute right-[140px] pointer-events-none text-2xl font-bold" style={{ marginTop: '2px' }}>
             {formatDisplayDate(endDate)}
           </div>
           
