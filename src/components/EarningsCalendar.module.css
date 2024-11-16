@@ -38,14 +38,7 @@
     text-align: center;
     font-weight: 700;
     font-size: 1.5rem;
-  }
-  
-  .dateInput::-webkit-datetime-edit-text,
-  .dateInput::-webkit-datetime-edit-month-field,
-  .dateInput::-webkit-datetime-edit-day-field,
-  .dateInput::-webkit-datetime-edit-year-field,
-  .dateInput::-webkit-calendar-picker-indicator {
-    display: none;
+    color: #1d1d1f;
   }
   
   .dateSeparator {
@@ -116,3 +109,10 @@
     border-radius: 9999px;
     object-fit: contain;
   }
+  
+  .dateInput::-webkit-calendar-picker-indicator,
+  .dateInput::-webkit-datetime-edit-year-field,
+  .dateInput::-webkit-datetime-edit-text {
+    display: none;
+  }
+ 

@@ -8,7 +8,7 @@ export default function EarningsCalendar() {
 
   const formatDate = (date) => {
     const koreaDate = new Date(date.getTime() + (9 * 60 * 60 * 1000));
-    return koreaDate.toISOString().split('T')[0];
+    return `${koreaDate.getFullYear()}-${String(koreaDate.getMonth() + 1).padStart(2, '0')}-${String(koreaDate.getDate()).padStart(2, '0')}`;
   };
 
   const formatDisplayDate = (dateString) => {
