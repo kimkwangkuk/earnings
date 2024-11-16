@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styles from './EarningsCalendar.module.css';
 
 export default function EarningsCalendar() {
   const today = new Date();
@@ -73,53 +74,32 @@ export default function EarningsCalendar() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl bg-[#f5f5f7]">
-      <div className="flex justify-between items-start mb-12">
+    <div className={styles.container}>
+      <div className={styles.headerContainer}>
         <div>
-          <h1 className="text-4xl font-extrabold text-[#1d1d1f] mb-2">미국 주식</h1>
-          <h2 className="text-4xl font-extrabold text-[#1d1d1f]">실적 발표 일정</h2>
+          <h1 className={styles.titleContainer}>미국 주식</h1>
+          <h2 className={styles.titleContainer}>실적 발표 일정</h2>
         </div>
 
-        <div className="flex items-center gap-4 relative">
+        <div className={styles.datePickerContainer}>
           <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] h-16 
-              text-center font-bold text-2xl
-              [&::-webkit-datetime-edit-text]:hidden 
-              [&::-webkit-datetime-edit-month-field]:hidden 
-              [&::-webkit-datetime-edit-day-field]:hidden 
-              [&::-webkit-datetime-edit-year-field]:hidden 
-              [&::-webkit-calendar-picker-indicator]:hidden"
+            className={styles.dateInput}
           />
-          <div className="absolute left-4 pointer-events-none text-2xl font-bold" style={{ marginTop: '2px' }}>
-            {formatDisplayDate(startDate)}
-          </div>
-          
-          <span className="text-gray-500 text-2xl font-bold">~</span>
-          
+          <span className={styles.dateSeparator}>~</span>
           <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
             onClick={(e) => e.target.showPicker()}
-            className="px-4 py-4 border rounded-lg bg-white shadow-sm cursor-pointer w-[140px] h-16 
-              text-center font-bold text-2xl
-              [&::-webkit-datetime-edit-text]:hidden 
-              [&::-webkit-datetime-edit-month-field]:hidden 
-              [&::-webkit-datetime-edit-day-field]:hidden 
-              [&::-webkit-datetime-edit-year-field]:hidden 
-              [&::-webkit-calendar-picker-indicator]:hidden"
+            className={styles.dateInput}
           />
-          <div className="absolute right-[140px] pointer-events-none text-2xl font-bold" style={{ marginTop: '2px' }}>
-            {formatDisplayDate(endDate)}
-          </div>
-          
-          <button
+          <button 
             onClick={fetchEarnings}
-            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+            className={styles.submitButton}
             disabled={isLoading}
           >
             {isLoading ? '로딩중...' : '조회하기'}
@@ -128,56 +108,52 @@ export default function EarningsCalendar() {
       </div>
 
       {earnings.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden backdrop-blur-lg bg-opacity-50">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead>
-                <tr>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white w-20">요일</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white w-32">날짜</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white w-32">시간</th>
-                  <th className="px-8 py-5 text-left text-sm font-medium text-[#1d1d1f] bg-white">종목</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {earnings.map((earning) => {
-                  const date = new Date(earning.eventAt);
-                  const koreanWeekdays = ['일', '월', '화', '수', '목', '금', '토'];
-                  
-                  return (
-                    <tr key={earning.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
-                        {koreanWeekdays[date.getDay()]}
-                      </td>
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
-                        {`${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`}
-                      </td>
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f] whitespace-nowrap">
-                        {date.toLocaleTimeString('ko-KR', {
-                          timeZone: 'Asia/Seoul',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                          hour12: true
-                        }).replace(/\s/g, '')}
-                      </td>
-                      <td className="px-8 py-5 text-sm text-[#1d1d1f]">
-                        <div className="flex items-center gap-2">
-                          {earning.tickerIconUrl && (
-                            <img 
-                              src={earning.tickerIconUrl} 
-                              alt={`${earning.ticker} logo`}
-                              className="w-6 h-6 rounded-full object-contain"
-                            />
-                          )}
-                          {earning.ticker}
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+        <div className={styles.tableContainer}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th className={styles.tableHeader}>요일</th>
+                <th className={styles.tableHeader}>날짜</th>
+                <th className={styles.tableHeader}>시간</th>
+                <th className={styles.tableHeader}>종목</th>
+              </tr>
+            </thead>
+            <tbody>
+              {earnings.map((earning) => {
+                const date = new Date(earning.eventAt);
+                const koreanWeekdays = ['일', '월', '화', '수', '목', '금', '토'];
+                
+                return (
+                  <tr key={earning.id} className={styles.tableRow}>
+                    <td className={styles.tableCell}>{koreanWeekdays[date.getDay()]}</td>
+                    <td className={styles.tableCell}>
+                      {`${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`}
+                    </td>
+                    <td className={styles.tableCell}>
+                      {date.toLocaleTimeString('ko-KR', {
+                        timeZone: 'Asia/Seoul',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true
+                      }).replace(/\s/g, '')}
+                    </td>
+                    <td className={styles.tableCell}>
+                      <div className={styles.tickerContainer}>
+                        {earning.tickerIconUrl && (
+                          <img 
+                            src={earning.tickerIconUrl} 
+                            alt={`${earning.ticker} logo`}
+                            className={styles.tickerIcon}
+                          />
+                        )}
+                        {earning.ticker}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

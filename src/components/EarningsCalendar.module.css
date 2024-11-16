@@ -1,0 +1,118 @@
+.container {
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    max-width: 72rem;
+    background-color: #f5f5f7;
+  }
+  
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+  }
+  
+  .titleContainer {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1d1d1f;
+    margin-bottom: 0.5rem;
+  }
+  
+  .datePickerContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  .dateInput {
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    width: 140px;
+    height: 4rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  
+  .dateInput::-webkit-datetime-edit-text,
+  .dateInput::-webkit-datetime-edit-month-field,
+  .dateInput::-webkit-datetime-edit-day-field,
+  .dateInput::-webkit-datetime-edit-year-field,
+  .dateInput::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+  
+  .dateSeparator {
+    color: #6b7280;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .submitButton {
+    padding: 0.5rem 1.5rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+  }
+  
+  .submitButton:hover {
+    background-color: #1f2937;
+  }
+  
+  .tableContainer {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+  
+  .table {
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .tableHeader {
+    padding: 1.25rem 2rem;
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1d1d1f;
+    background-color: white;
+  }
+  
+  .tableCell {
+    padding: 1.25rem 2rem;
+    font-size: 0.875rem;
+    color: #1d1d1f;
+    white-space: nowrap;
+  }
+  
+  .tableRow {
+    transition: background-color 0.2s;
+  }
+  
+  .tableRow:hover {
+    background-color: #f9fafb;
+  }
+  
+  .tickerContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .tickerIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    object-fit: contain;
+  }
