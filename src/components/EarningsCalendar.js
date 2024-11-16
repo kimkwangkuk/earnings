@@ -6,14 +6,14 @@ export default function EarningsCalendar() {
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   const formatDate = (date) => {
-    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
-      .toISOString()
-      .split('T')[0];
+    const koreaDate = new Date(date.getTime() + (9 * 60 * 60 * 1000));
+    return koreaDate.toISOString().split('T')[0];
   };
 
   const formatDisplayDate = (dateString) => {
     const date = new Date(dateString);
-    return `${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+    const koreaDate = new Date(date.getTime() + (9 * 60 * 60 * 1000));
+    return `${String(koreaDate.getMonth() + 1).padStart(2, '0')}.${String(koreaDate.getDate()).padStart(2, '0')}`;
   };
 
   const [startDate, setStartDate] = useState(formatDate(today));
@@ -38,8 +38,8 @@ export default function EarningsCalendar() {
       const endKST = new Date(endDate);
       endKST.setHours(23, 59, 59, 999);
 
-      const start = startKST.getTime() - (9 * 60 * 60 * 1000);
-      const end = endKST.getTime() - (9 * 60 * 60 * 1000);
+      const start = startKST.getTime();
+      const end = endKST.getTime();
       
       const response = await fetch(
         `/api/earnings?from=${start}&to=${end}&pageSize=1000&sortBy=marketCap`
